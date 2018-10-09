@@ -14,7 +14,7 @@ import java.util.Random;
 public class MainActivity extends Activity {
 
 
-    private static ArrayList<Activity> activites = new ArrayList<Activity>();
+    private static ArrayList<Activity> activities = new ArrayList<>();
 
     ImageView cardLeftImage, cardRightImage;
     TextView scoreLeft, scoreRight;
@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activites.add(this);
+        activities.add(this);
         setContentView(R.layout.activity_main);
 
 
@@ -50,17 +50,18 @@ public class MainActivity extends Activity {
             public void onClick(View v)
             {
                 // generate the two card numbers
-                int leftCard = r.nextInt(13) +2; // this is for cards 2 - 14
-                int rightCard = r.nextInt(13) +2; // this is for cards 2 - 14
+                int leftCard = r.nextInt(10) +2; // this is for cards 2 - 11
+                int rightCard = r.nextInt(10) +2; // this is for cards 2 - 11
 
 
 
-                // show card images
+                // Draw card images, the int identifies the score of the card
+                // and also the card number in file name
 
-                int leftImage = getResources().getIdentifier("card" + leftCard, "drawable", getPackageName());
+                int leftImage = getDrawableCard(leftCard);
                 cardLeftImage.setImageResource(leftImage);
 
-                int rightImage = getResources().getIdentifier("card" + rightCard, "drawable", getPackageName());
+                int rightImage = getDrawableCard(rightCard);
                 cardRightImage.setImageResource(rightImage);
 
 
@@ -68,21 +69,24 @@ public class MainActivity extends Activity {
                 if (leftCard > rightCard)
                 {
                     leftScore++;
-                    scoreLeft.setText(String.valueOf(leftScore));
+                    setScoreLeft(String.valueOf(leftScore));
+                    getToast("You lost this battle!").show();
 
                 }
                 else if(leftCard < rightCard)
                 {
                     rightScore++;
-                    scoreRight.setText(String.valueOf(rightScore));
+                    setScoreRight(String.valueOf(rightScore));
+                    getToast("You win this battle!").show();
+
 
 
                 } else if (leftCard == rightCard)
                 {
-                    Toast.makeText(MainActivity.this,"Draw Battle", Toast.LENGTH_SHORT).show();
+                    getToast("Draw Battle").show();
                 }
 
-                // Win Gmae
+                // Check competition
 
                 if (leftScore == maxScore && rightScore == maxScore)
                 {
@@ -102,14 +106,14 @@ public class MainActivity extends Activity {
                 if(gameCompetitionStatus.equals("draw"))
                 {
                     hideThingsMakeRestartButtonVisible();
-                    scoreLeft.setText("Draw!!");
+                    setScoreLeft("Draw!!");
 
                 }
 
                else  if(gameCompetitionStatus.equals("left_wins"))
                 {
                     hideThingsMakeRestartButtonVisible();
-                    scoreLeft.setText("Bot Wins!!");
+                    setScoreLeft("Bot Wins!!");
 
                 }
                 else if(gameCompetitionStatus.equals("right_wins"))
@@ -133,6 +137,7 @@ public class MainActivity extends Activity {
 
         });
 
+        // Listen Restart button which will restart the game
 
         button_restart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,9 +148,26 @@ public class MainActivity extends Activity {
 
 
     }
+
+    private int getDrawableCard(int card) {
+        return getResources().getIdentifier("card" + card, "drawable", getPackageName());
+    }
+
+    private void setScoreRight(String s ) {
+        scoreRight.setText(String.valueOf(s));
+    }
+
+    private void setScoreLeft(String s) {
+        scoreLeft.setText(s);
+    }
+
+    private Toast getToast(String s) {
+        return Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT);
+    }
+
     private void restartGame() {
 
-        for (Activity activity: activites)
+        for (Activity activity: activities)
             activity.recreate();
 
 

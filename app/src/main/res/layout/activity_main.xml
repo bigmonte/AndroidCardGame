@@ -16,20 +16,20 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/cardLeftImage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:scaleType="centerInside"
+            android:src="@drawable/back" />
+
+        <ImageView
             android:id="@+id/cardRightImage"
             android:layout_weight="0.1"
             android:layout_width="0dp"
             android:src="@drawable/back"
             android:scaleType="centerInside"
             android:layout_height="wrap_content" />
-
-        <ImageView
-            android:id="@+id/cardLeftImage"
-            android:layout_width="0dp"
-            android:layout_weight="0.1"
-            android:layout_height="wrap_content"
-            android:src="@drawable/back"
-            android:scaleType="centerInside" />
 
     </LinearLayout>
 
