@@ -34,12 +34,12 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button_deal"
+        android:id="@+id/buttonBattle"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="@string/deal"
+        android:text="@string/battle"
         android:textColor="#FFFFFF"
         android:textSize="40sp" />
 
@@ -48,13 +48,12 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/buttonBattle"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="71dp"
         android:text="@string/restart"
-        android:visibility="invisible"
         android:textColor="#FFFFFF"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="invisible" />
 
 
 

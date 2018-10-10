@@ -1,6 +1,7 @@
 package com.portalmafia.androidcardgame;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,33 +19,45 @@ public class MainActivity extends Activity {
 
     ImageView cardLeftImage, cardRightImage;
     TextView scoreLeft, scoreRight;
-    Button button_deal;
-    Button button_restart;
+    Button buttonBattle;
+    Button buttonRestart;
     String gameCompetitionStatus = "competing";
+    Typeface font;
+
 
     Random r;
-    int maxScore = 5;
+    int maxScore = 7;
 
 
     int leftScore, rightScore = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         activities.add(this);
         setContentView(R.layout.activity_main);
+
+        //buttonBattle.setTypeface(face);
 
 
         cardLeftImage =   findViewById(R.id.cardLeftImage);
         cardRightImage =  findViewById(R.id.cardRightImage);
         scoreLeft =  findViewById(R.id.scoreLeft);
         scoreRight = findViewById(R.id.scoreRight);
-        button_deal = findViewById(R.id.button_deal);
-        button_restart = findViewById(R.id.button_restart);
+        buttonBattle = findViewById(R.id.buttonBattle);
+        buttonRestart = findViewById(R.id.button_restart);
+
+        font =  Typeface.createFromAsset(getAssets(),"fonts/curse.ttf");
+
+         scoreLeft.setTypeface(font);
 
         r = new Random();
 
-        button_deal.setOnClickListener(new View.OnClickListener() {
+         scoreRight.setTypeface(font);
+         buttonBattle.setTypeface(font);
+
+        buttonBattle.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View v)
@@ -129,8 +142,8 @@ public class MainActivity extends Activity {
                 scoreRight.setVisibility(View.GONE);
                 cardLeftImage.setVisibility(View.GONE);
                 cardRightImage.setVisibility(View.GONE);
-                button_deal.setVisibility(View.GONE);
-                button_restart.setVisibility(View.VISIBLE);
+                buttonBattle.setVisibility(View.GONE);
+                buttonRestart.setVisibility(View.VISIBLE);
             }
 
 
@@ -139,7 +152,7 @@ public class MainActivity extends Activity {
 
         // Listen Restart button which will restart the game
 
-        button_restart.setOnClickListener(new View.OnClickListener() {
+        buttonRestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 restartGame();
