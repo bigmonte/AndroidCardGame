@@ -14,7 +14,6 @@ import java.util.Random;
 
 public class MainActivity extends Activity {
 
-
     private static ArrayList<Activity> activities = new ArrayList<>();
 
     ImageView cardLeftImage, cardRightImage;
@@ -24,11 +23,9 @@ public class MainActivity extends Activity {
     String gameCompetitionStatus = "competing";
     Typeface font;
 
-
     Random r;
+
     int maxScore = 7;
-
-
     int leftScore, rightScore = 0;
 
     @Override
@@ -40,32 +37,29 @@ public class MainActivity extends Activity {
 
         //buttonBattle.setTypeface(face);
 
-
-        cardLeftImage =   findViewById(R.id.cardLeftImage);
-        cardRightImage =  findViewById(R.id.cardRightImage);
-        scoreLeft =  findViewById(R.id.scoreLeft);
+        cardLeftImage = findViewById(R.id.cardLeftImage);
+        cardRightImage = findViewById(R.id.cardRightImage);
+        scoreLeft = findViewById(R.id.scoreLeft);
         scoreRight = findViewById(R.id.scoreRight);
         buttonBattle = findViewById(R.id.buttonBattle);
         buttonRestart = findViewById(R.id.button_restart);
 
-        font =  Typeface.createFromAsset(getAssets(),"fonts/curse.ttf");
+        font = Typeface.createFromAsset(getAssets(), "fonts/curse.ttf");
 
-         scoreLeft.setTypeface(font);
+        scoreLeft.setTypeface(font);
 
         r = new Random();
 
-         scoreRight.setTypeface(font);
-         buttonBattle.setTypeface(font);
+        scoreRight.setTypeface(font);
+        buttonBattle.setTypeface(font);
 
         buttonBattle.setOnClickListener(new View.OnClickListener() {
             @Override
 
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 // generate the two card numbers
-                int leftCard = r.nextInt(10) +2; // this is for cards 2 - 11
-                int rightCard = r.nextInt(10) +2; // this is for cards 2 - 11
-
+                int leftCard = r.nextInt(10) + 2; // this is for cards 2 - 11
+                int rightCard = r.nextInt(10) + 2; // this is for cards 2 - 11
 
 
                 // Draw card images, the int identifies the score of the card
@@ -79,73 +73,54 @@ public class MainActivity extends Activity {
 
 
                 // compare cards, add points and update score
-                if (leftCard > rightCard)
-                {
+                if (leftCard > rightCard) {
                     leftScore++;
                     setScoreLeft(String.valueOf(leftScore));
                     getToast("You lost this battle!").show();
 
-                }
-                else if(leftCard < rightCard)
-                {
+                } else if (leftCard < rightCard) {
                     rightScore++;
                     setScoreRight(String.valueOf(rightScore));
                     getToast("You win this battle!").show();
 
 
-
-                } else if (leftCard == rightCard)
-                {
+                } else if (leftCard == rightCard) {
                     getToast("Draw Battle").show();
                 }
 
                 // Check competition
 
-                if (leftScore == maxScore && rightScore == maxScore)
-                {
-                    gameCompetitionStatus ="draw";
+                if (leftScore == maxScore && rightScore == maxScore) {
+                    gameCompetitionStatus = "draw";
+                } else if (leftScore >= maxScore) {
+                    gameCompetitionStatus = "left_wins";
+                } else if (rightScore >= maxScore) {
+                    gameCompetitionStatus = "right_wins";
                 }
 
-                else if (leftScore >= maxScore )
-                {
-                    gameCompetitionStatus ="left_wins";
-                }
-
-                else if (rightScore >= maxScore)
-                {
-                    gameCompetitionStatus ="right_wins";
-                }
-
-                if(gameCompetitionStatus.equals("draw"))
-                {
+                if (gameCompetitionStatus.equals("draw")) {
                     hideThingsMakeRestartButtonVisible();
                     setScoreLeft("Draw!!");
 
-                }
-
-               else  if(gameCompetitionStatus.equals("left_wins"))
-                {
+                } else if (gameCompetitionStatus.equals("left_wins")) {
                     hideThingsMakeRestartButtonVisible();
                     setScoreLeft("Bot Wins!!");
 
-                }
-                else if(gameCompetitionStatus.equals("right_wins"))
-                {
+                } else if (gameCompetitionStatus.equals("right_wins")) {
                     hideThingsMakeRestartButtonVisible();
                     scoreLeft.setText(R.string.congrats);
 
                 }
 
             }
-            private void hideThingsMakeRestartButtonVisible()
-            {
+
+            private void hideThingsMakeRestartButtonVisible() {
                 scoreRight.setVisibility(View.GONE);
                 cardLeftImage.setVisibility(View.GONE);
                 cardRightImage.setVisibility(View.GONE);
                 buttonBattle.setVisibility(View.GONE);
                 buttonRestart.setVisibility(View.VISIBLE);
             }
-
 
 
         });
@@ -166,7 +141,7 @@ public class MainActivity extends Activity {
         return getResources().getIdentifier("card" + card, "drawable", getPackageName());
     }
 
-    private void setScoreRight(String s ) {
+    private void setScoreRight(String s) {
         scoreRight.setText(String.valueOf(s));
     }
 
@@ -180,7 +155,7 @@ public class MainActivity extends Activity {
 
     private void restartGame() {
 
-        for (Activity activity: activities)
+        for (Activity activity : activities)
             activity.recreate();
 
 
