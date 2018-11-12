@@ -3,4 +3,6 @@
     <string name="battle">BATTLE</string>
     <string name="congrats">Congratulations! You win!</string>
     <string name="restart">Restart</string>
+    <string name="activity_detail">Necromancy News</string>
+    <string name="news_action_bar">News</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.portalmafia.androidcardgame;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,8 @@ import java.util.Random;
 public class MainActivity extends Activity {
 
     private static ArrayList<Activity> activities = new ArrayList<>();
+    Class[] ActivitiesClass = new Class[1];
+    Intent[] intents = new Intent[1];
 
     ImageView cardLeftImage, cardRightImage;
     TextView scoreLeft, scoreRight;
@@ -34,106 +37,25 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         activities.add(this);
         setContentView(R.layout.activity_main);
+        ActivitiesClass[0] = NewsActivity.class;
 
         //buttonBattle.setTypeface(face);
 
         cardLeftImage = findViewById(R.id.cardLeftImage);
         cardRightImage = findViewById(R.id.cardRightImage);
-        scoreLeft = findViewById(R.id.scoreLeft);
-        scoreRight = findViewById(R.id.scoreRight);
+
         buttonBattle = findViewById(R.id.buttonBattle);
-        buttonRestart = findViewById(R.id.button_restart);
 
         font = Typeface.createFromAsset(getAssets(), "fonts/curse.ttf");
 
-        scoreLeft.setTypeface(font);
 
         r = new Random();
 
-        scoreRight.setTypeface(font);
         buttonBattle.setTypeface(font);
 
-        buttonBattle.setOnClickListener(new View.OnClickListener() {
-            @Override
 
-            public void onClick(View v) {
-                // generate the two card numbers
-                int leftCard = r.nextInt(10) + 2; // this is for cards 2 - 11
-                int rightCard = r.nextInt(10) + 2; // this is for cards 2 - 11
-
-
-                // Draw card images, the int identifies the score of the card
-                // and also the card number in file name
-
-                int leftImage = getDrawableCard(leftCard);
-                cardLeftImage.setImageResource(leftImage);
-
-                int rightImage = getDrawableCard(rightCard);
-                cardRightImage.setImageResource(rightImage);
-
-
-                // compare cards, add points and update score
-                if (leftCard > rightCard) {
-                    leftScore++;
-                    setScoreLeft(String.valueOf(leftScore));
-                    getToast("You lost this battle!").show();
-
-                } else if (leftCard < rightCard) {
-                    rightScore++;
-                    setScoreRight(String.valueOf(rightScore));
-                    getToast("You win this battle!").show();
-
-
-                } else if (leftCard == rightCard) {
-                    getToast("Draw Battle").show();
-                }
-
-                // Check competition
-
-                if (leftScore == maxScore && rightScore == maxScore) {
-                    gameCompetitionStatus = "draw";
-                } else if (leftScore >= maxScore) {
-                    gameCompetitionStatus = "left_wins";
-                } else if (rightScore >= maxScore) {
-                    gameCompetitionStatus = "right_wins";
-                }
-
-                if (gameCompetitionStatus.equals("draw")) {
-                    hideThingsMakeRestartButtonVisible();
-                    setScoreLeft("Draw!!");
-
-                } else if (gameCompetitionStatus.equals("left_wins")) {
-                    hideThingsMakeRestartButtonVisible();
-                    setScoreLeft("Bot Wins!!");
-
-                } else if (gameCompetitionStatus.equals("right_wins")) {
-                    hideThingsMakeRestartButtonVisible();
-                    scoreLeft.setText(R.string.congrats);
-
-                }
-
-            }
-
-            private void hideThingsMakeRestartButtonVisible() {
-                scoreRight.setVisibility(View.GONE);
-                cardLeftImage.setVisibility(View.GONE);
-                cardRightImage.setVisibility(View.GONE);
-                buttonBattle.setVisibility(View.GONE);
-                buttonRestart.setVisibility(View.VISIBLE);
-            }
-
-
-        });
-
-        // Listen Restart button which will restart the game
-
-        buttonRestart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                restartGame();
-            }
-        });
-
+        // Listen Restart button which will restart the gam
+        openNewsActivity(buttonBattle);
 
     }
 
@@ -158,6 +80,22 @@ public class MainActivity extends Activity {
         for (Activity activity : activities)
             activity.recreate();
 
+    }
 
+    private void openNewsActivity(Button buttonNews)
+    {
+        buttonNews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChangeActivity(v);
+            }
+        });
+    }
+
+    public void ChangeActivity(View view)
+    {
+        intents[0] = new Intent();
+        intents[0].setClass(this, ActivitiesClass[0]);
+        startActivity(intents[0]);
     }
 }
