@@ -16,13 +16,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NewsActivity"
+        <activity
+            android:name=".NewsActivity"
             android:label="@string/news_action_bar"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.portalmafia.androidcardgame.MainActivity" />
         </activity>
+        <activity
+            android:name=".PlayerInfoActivity"
+            android:label="@string/playerInfo_action_bar"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.portalmafia.androidcardgame.MainActivity" />
+        </activity>
+        <activity android:name=".SettingsActivity"
+            android:label="@string/settings_action_bar_title"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.portalmafia.androidcardgame.MainActivity" />
+            </activity>
     </application>
-
 </manifest>

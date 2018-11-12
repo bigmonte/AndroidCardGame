@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -16,13 +15,11 @@ import java.util.Random;
 public class MainActivity extends Activity {
 
     private static ArrayList<Activity> activities = new ArrayList<>();
-    Class[] ActivitiesClass = new Class[1];
-    Intent[] intents = new Intent[1];
+    Class[] ActivitiesClass = new Class[3];
+    Intent[] intents = new Intent[3];
 
     ImageView cardLeftImage, cardRightImage;
-    TextView scoreLeft, scoreRight;
-    Button buttonBattle;
-    Button buttonRestart;
+    Button buttonNews, buttonPlayerInfo, buttonSettings;
     String gameCompetitionStatus = "competing";
     Typeface font;
 
@@ -38,37 +35,43 @@ public class MainActivity extends Activity {
         activities.add(this);
         setContentView(R.layout.activity_main);
         ActivitiesClass[0] = NewsActivity.class;
+        ActivitiesClass[1] = PlayerInfoActivity.class;
+        ActivitiesClass[2] = SettingsActivity.class;
 
         //buttonBattle.setTypeface(face);
 
         cardLeftImage = findViewById(R.id.cardLeftImage);
         cardRightImage = findViewById(R.id.cardRightImage);
 
-        buttonBattle = findViewById(R.id.buttonBattle);
+        buttonNews = findViewById(R.id.buttoneNews);
+        buttonPlayerInfo = findViewById(R.id.buttonPlayerInfo);
+        buttonSettings = findViewById(R.id.buttonSettings);
 
         font = Typeface.createFromAsset(getAssets(), "fonts/curse.ttf");
 
 
         r = new Random();
 
-        buttonBattle.setTypeface(font);
+        buttonNews.setTypeface(font);
+        buttonPlayerInfo.setTypeface(font);
+        buttonSettings.setTypeface(font);
 
 
         // Listen Restart button which will restart the gam
-        openNewsActivity(buttonBattle);
+
+        // 0 - News
+        // 1 - Player Info
+        // 2 - Settings
+
+        ButtonActivityListener(buttonNews, 0);
+        ButtonActivityListener(buttonPlayerInfo, 1);
+       ButtonActivityListener(buttonSettings, 2);
+
 
     }
 
     private int getDrawableCard(int card) {
         return getResources().getIdentifier("card" + card, "drawable", getPackageName());
-    }
-
-    private void setScoreRight(String s) {
-        scoreRight.setText(String.valueOf(s));
-    }
-
-    private void setScoreLeft(String s) {
-        scoreLeft.setText(s);
     }
 
     private Toast getToast(String s) {
@@ -82,20 +85,20 @@ public class MainActivity extends Activity {
 
     }
 
-    private void openNewsActivity(Button buttonNews)
+    private void ButtonActivityListener(Button buttonNews, final int activityIndex)
     {
         buttonNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ChangeActivity(v);
+                ChangeActivity(v,activityIndex );
             }
         });
     }
 
-    public void ChangeActivity(View view)
+    public void ChangeActivity(View view, int index)
     {
-        intents[0] = new Intent();
-        intents[0].setClass(this, ActivitiesClass[0]);
-        startActivity(intents[0]);
+        intents[index] = new Intent();
+        intents[index].setClass(this, ActivitiesClass[index]);
+        startActivity(intents[index]);
     }
 }
