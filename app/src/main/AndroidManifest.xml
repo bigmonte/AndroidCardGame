@@ -40,7 +40,29 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.portalmafia.androidcardgame.MainActivity" />
         </activity>
-        <activity android:name=".RewardActivity"></activity>
+        <activity android:name=".RewardActivity" />
+        <activity
+            android:name=".EncyclopediaActivity"
+            android:label="@string/encyclopedia_actionBarTitle"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.portalmafia.androidcardgame.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ManageHatsActivity"
+            android:label="Helmets"
+            android:parentActivityName=".PlayerInfoActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.portalmafia.androidcardgame.MainActivity" />
+        </activity>
+        <activity android:name=".ManageSkillsActivity"
+            android:label="Skills"
+            android:parentActivityName=".PlayerInfoActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.portalmafia.androidcardgame.MainActivity" /></activity>
     </application>
 
 </manifest>

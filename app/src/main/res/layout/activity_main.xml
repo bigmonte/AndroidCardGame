@@ -66,7 +66,7 @@
             android:gravity="center"
             android:text="PLAYER"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:textSize="14sp"
 
             />
 
@@ -79,7 +79,7 @@
             android:gravity="center"
             android:text="NEWS"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:textSize="14sp"
 
             />
 
@@ -97,5 +97,19 @@
             />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonEncyclopedia"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Open Encyclopedia"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
 </android.support.constraint.ConstraintLayout>

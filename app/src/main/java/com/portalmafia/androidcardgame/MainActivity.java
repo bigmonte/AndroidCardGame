@@ -15,11 +15,11 @@ import java.util.Random;
 public class MainActivity extends Activity {
 
     private static ArrayList<Activity> activities = new ArrayList<>();
-    Class[] ActivitiesClass = new Class[3];
-    Intent[] intents = new Intent[3];
+    Class[] ActivitiesClass = new Class[4];
+    Intent[] intents = new Intent[4];
 
     ImageView cardLeftImage, cardRightImage;
-    Button buttonNews, buttonPlayerInfo, buttonSettings;
+    Button buttonNews, buttonPlayerInfo, buttonSettings, buttonEncyclopedia;
     String gameCompetitionStatus = "competing";
     Typeface font;
 
@@ -37,8 +37,8 @@ public class MainActivity extends Activity {
         ActivitiesClass[0] = NewsActivity.class;
         ActivitiesClass[1] = PlayerInfoActivity.class;
         ActivitiesClass[2] = SettingsActivity.class;
+        ActivitiesClass[3] = EncyclopediaActivity.class;
 
-        //buttonBattle.setTypeface(face);
 
         cardLeftImage = findViewById(R.id.cardLeftImage);
         cardRightImage = findViewById(R.id.cardRightImage);
@@ -46,6 +46,7 @@ public class MainActivity extends Activity {
         buttonNews = findViewById(R.id.buttoneNews);
         buttonPlayerInfo = findViewById(R.id.buttonPlayerInfo);
         buttonSettings = findViewById(R.id.buttonSettings);
+        buttonEncyclopedia = findViewById(R.id.buttonEncyclopedia);
 
         font = Typeface.createFromAsset(getAssets(), "fonts/curse.ttf");
 
@@ -55,6 +56,7 @@ public class MainActivity extends Activity {
         buttonNews.setTypeface(font);
         buttonPlayerInfo.setTypeface(font);
         buttonSettings.setTypeface(font);
+        buttonEncyclopedia.setTypeface(font);
 
 
         // Listen Restart button which will restart the gam
@@ -62,10 +64,12 @@ public class MainActivity extends Activity {
         // 0 - News
         // 1 - Player Info
         // 2 - Settings
+        // 3 - Encyclopedia
 
         ButtonActivityListener(buttonNews, 0);
         ButtonActivityListener(buttonPlayerInfo, 1);
-       ButtonActivityListener(buttonSettings, 2);
+        ButtonActivityListener(buttonSettings, 2);
+        ButtonActivityListener(buttonEncyclopedia, 3);
 
 
     }
