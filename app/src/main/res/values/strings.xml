@@ -7,4 +7,5 @@
     <string name="news_action_bar">News</string>
     <string name="playerInfo_action_bar">Player Info</string>
     <string name="settings_action_bar_title">Settings</string>
+    <string name="player_actionbarTitle">Player</string>
 </resources>
