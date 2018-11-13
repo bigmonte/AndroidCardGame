@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.1"
             android:scaleType="centerInside"
-            android:src="@drawable/back" />
+            android:src="@drawable/encyclopedia" />
 
         <ImageView
             android:id="@+id/cardRightImage"
