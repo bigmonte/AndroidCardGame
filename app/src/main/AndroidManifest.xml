@@ -57,12 +57,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.portalmafia.androidcardgame.MainActivity" />
         </activity>
-        <activity android:name=".ManageSkillsActivity"
+        <activity
+            android:name=".ManageSkillsActivity"
             android:label="Skills"
             android:parentActivityName=".PlayerInfoActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.portalmafia.androidcardgame.MainActivity" /></activity>
+                android:value="com.portalmafia.androidcardgame.MainActivity" />
+        </activity>
+        <activity android:name=".NewsArticleActivity"
+            android:label="Article Title"
+            android:parentActivityName=".NewsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.portalmafia.androidcardgame.MainActivity" />
+            ></activity>
     </application>
 
 </manifest>
