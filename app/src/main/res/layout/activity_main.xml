@@ -32,13 +32,14 @@
             android:scaleType="centerInside"
             android:src="@drawable/encyclopedia" />
 
-        <ImageView
-            android:id="@+id/cardRightImage"
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.1"
-            android:scaleType="centerInside"
-            android:src="@drawable/back" />
+            android:textColor="@android:color/white"
+            android:textSize="11dp"
+            android:text=" Check useful information about the game, which enemies the game have, as well check the different enemies characteristics and important data" />
 
     </LinearLayout>
 
